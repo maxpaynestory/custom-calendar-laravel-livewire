@@ -12,5 +12,8 @@ if [ ! -f /var/www/html/vendor/autoload.php ]; then
     composer install --no-scripts
 fi
 
+# Install MySQL PHP extension
+docker-php-ext-install mysqli pdo pdo_mysql
+
 # Start Apache
 apache2-foreground
