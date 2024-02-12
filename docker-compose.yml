@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  # Laravel Application
+  web:
+    image: php:8.2-apache
+    container_name: laravel_web
+    ports:
+      - '80:80'
+    volumes:
+      - .:/var/www/html
+      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf
+    working_dir: /var/www/html
+    entrypoint: ["sh", "/var/www/html/entrypoint.sh"]
+    depends_on:
+      - composer
+
+  # Composer
+  composer:
+    image: 'composer:latest'
+    container_name: laravel_composer
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
