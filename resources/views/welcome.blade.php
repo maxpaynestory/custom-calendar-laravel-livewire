@@ -145,7 +145,7 @@
         <div class="my_calender">
             <div class="custom_container">
                 <div class="scroll_area">
-                    <livewire:calendar-component />
+                    <livewire:calendar />
                 </div>
                 <div class="nextbtn_row">
                     <div class="slot_selected">

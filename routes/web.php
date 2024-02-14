@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Livewire\Calendar;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

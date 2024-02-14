@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
 
-class CalendarComponent extends Component
+class Calendar extends Component
 {
     public $selectedTimeRange = [];
     public $isSelecting = "n";
@@ -19,7 +19,6 @@ class CalendarComponent extends Component
     public function mount()
     {
         $this->timeSlots = $this->generateTimeSlots();
-        Log::info('Generated Time Slots:', ['timeSlots' => $this->timeSlots->toArray()]);
     }
 
     protected $listeners = [
@@ -30,6 +29,7 @@ class CalendarComponent extends Component
 
     public function startSelecting($startX)
     {
+        Log::info('Started Selecting');
         $this->isSelecting = "y";
         $this->startX = $startX;
         $this->endX = $startX;
@@ -81,6 +81,6 @@ class CalendarComponent extends Component
 
     public function render()
     {
-        return view('livewire.calendar-component');
+        return view('livewire.calendar');
     }
 }

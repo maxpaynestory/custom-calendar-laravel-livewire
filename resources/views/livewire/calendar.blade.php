@@ -287,11 +287,11 @@
             </div>
             <div class="make_booking">
                 <div class="column th"><span>10</span> Mon</div>
-                @foreach($timeSlots->chunk(4) as $chunk)
-                <div class="column">
+                @foreach($timeSlots->chunk(4) as $key=>$chunk)
+                <div class="column" wire:key="{{ $key }}">
                     <div class="td1">
                         @foreach($chunk->take(2) as $slot)
-                        <span id="{{ $slot['id'] }}" class="{{ implode(' ', $slot['classes']) }}">
+                        <span id="{{ $slot['id'] }}" wire:key="{{ $slot['id'] }}" class="{{ implode(' ', $slot['classes']) }}">
                             {{ $slot['title'] }}
                         </span>
                         @endforeach
@@ -299,7 +299,7 @@
 
                     <div class="td2">
                         @foreach($chunk->skip(2) as $slot)
-                        <span id="{{ $slot['id'] }}" class="{{ implode(' ', $slot['classes']) }}">
+                        <span id="{{ $slot['id'] }}" wire:key="{{ $slot['id'] }}" class="{{ implode(' ', $slot['classes']) }}">
                             {{ $slot['title'] }}
                         </span>
                         @endforeach
@@ -1486,28 +1486,29 @@
         </div>
         <!-- year_calender end -->
     </div>
-    <script>
-        function jsStartSelecting(event, isSelecting) {
-            if (isSelecting == 'n' && event.target.className.includes("available")) {
-                /*Livewire.dispatch('startSelecting', {
-                    startX: event.clientX
-                });*/
-                console.log("Started Selecting");
-            }
-        }
-
-        function jsUpdateSelecting(event, isSelecting) {
-            if (isSelecting == 'y' && event.target.className.includes("available")) {
-                /*Livewire.dispatch('updateSelecting', {
-                    endX: event.clientX
-                });*/
-                console.log("Updating Selection");
-            }
-        }
-
-        function jsStopSelecting() {
-            //Livewire.dispatch('stopSelecting');
-            console.log("Stopped Selecting");
-        }
-    </script>
 </div>
+<script>
+    function jsStartSelecting(event, isSelecting) {
+        if (isSelecting == 'n' && event.target.className.includes("available")) {
+            Livewire.dispatch('startSelecting', {
+                startX: event.clientX
+            });
+            console.log("Started Selecting");
+        }
+        event.preventDefault();
+    }
+
+    function jsUpdateSelecting(event, isSelecting) {
+        if (isSelecting == 'y' && event.target.className.includes("available")) {
+            /*Livewire.dispatch('updateSelecting', {
+                endX: event.clientX
+            });*/
+            console.log("Updating Selection");
+        }
+    }
+
+    function jsStopSelecting() {
+        //Livewire.dispatch('stopSelecting');
+        console.log("Stopped Selecting");
+    }
+</script>

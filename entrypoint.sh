@@ -16,4 +16,5 @@ fi
 docker-php-ext-install mysqli pdo pdo_mysql
 
 # Start Apache
-apache2-foreground
+# apache2-foreground
+php artisan serve --port 80 --host 0.0.0.0
