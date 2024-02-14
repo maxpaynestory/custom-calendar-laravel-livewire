@@ -20,6 +20,8 @@ Import all sql scripts to laravel database
 On project root install dependencies and run migrations by
 ```sh
 docker-compose exec composer composer install
+docker-compose down
+docker-compose up -d
 docker-compose exec web php artisan migrate
 ```
 
