@@ -23,6 +23,7 @@ services:
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
+    command: install
 
   # Database (MySQL) service
   db:
