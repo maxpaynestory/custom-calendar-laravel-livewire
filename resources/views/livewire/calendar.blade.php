@@ -513,7 +513,6 @@
     let selectedIds = [];
 
     function removeSelection() {
-        $("span.highlighted").removeClass("highlight");
         Livewire.dispatch('removeSelection');
         selectedIds = [];
     }
