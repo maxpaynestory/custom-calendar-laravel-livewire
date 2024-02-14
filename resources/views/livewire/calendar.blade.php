@@ -523,20 +523,32 @@
     function jsStartSelecting(event) {
         if (isSelecting == false && event.target.className.includes("available")) {
             isSelecting = true;
+            event.preventDefault();
         }
     }
 
     function jsUpdateSelecting(event) {
         if (isSelecting == true && event.target.className.includes("available")) {
             addSlotIfFromEvent(event);
+            event.preventDefault();
         }
     }
 
     function jsStopSelecting() {
-        isSelecting = false;
-        Livewire.dispatch('stopSelecting', {
-            selection: selectedIds
-        });
-        console.log("Stopped Selecting");
+        if (isSelecting == true) {
+            isSelecting = false;
+            Livewire.dispatch('stopSelecting', {
+                selection: selectedIds
+            });
+        }
+
     }
+    document.addEventListener("DOMContentLoaded", () => {
+        Livewire.hook('morph.updated', ({
+            el,
+            component
+        }) => {
+            $(".b_time").siblings(".mcalender_popup").parent("").children(".b_time").addClass("show");
+        })
+    });
 </script>
