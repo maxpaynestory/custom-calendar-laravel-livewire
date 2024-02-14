@@ -526,12 +526,14 @@
     }
 
     function jsStartSelecting(event) {
-        if (isSelecting == false && event.target.className.includes("available")) {
-            if (selectedIds.length > 0) {
-                removeSelection();
+        if (event.which == 1) { //// left mouse button
+            if (isSelecting == false && event.target.className.includes("available")) {
+                if (selectedIds.length > 0) {
+                    removeSelection();
+                }
+                isSelecting = true;
+                event.preventDefault();
             }
-            isSelecting = true;
-            event.preventDefault();
         }
     }
 
