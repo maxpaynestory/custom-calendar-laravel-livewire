@@ -510,7 +510,13 @@
 </div>
 <script>
     let isSelecting = false;
-    const selectedIds = [];
+    let selectedIds = [];
+
+    function removeSelection() {
+        $("span.highlighted").removeClass("highlight");
+        Livewire.dispatch('removeSelection');
+        selectedIds = [];
+    }
 
     function addSlotIfFromEvent(event) {
         const slotId = event.target.id;
@@ -522,6 +528,9 @@
 
     function jsStartSelecting(event) {
         if (isSelecting == false && event.target.className.includes("available")) {
+            if (selectedIds.length > 0) {
+                removeSelection();
+            }
             isSelecting = true;
             event.preventDefault();
         }

@@ -22,7 +22,13 @@ class Calendar extends Component
 
     protected $listeners = [
         'stopSelecting' => 'stopSelecting',
+        'removeSelection' => 'removeSelection',
     ];
+
+    public function removeSelection()
+    {
+        $this->selectedIds = [];
+    }
 
     public function stopSelecting($selection)
     {
