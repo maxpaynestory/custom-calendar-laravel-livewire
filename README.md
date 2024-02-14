@@ -10,7 +10,7 @@ Clone repository and on project root run
 docker-compose up -d
 ```
 ### Step 2
-Open phpMyAdmin using URL https://localhost:8080/
+Open phpMyAdmin using URL http://localhost:8080/
 
 Import all sql scripts inside laravel database
 
