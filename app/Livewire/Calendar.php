@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class Calendar extends Component
 {
-    public $selectedTimeRange = [];
-    public $isSelecting = "n";
+    public $selectedIds = [];
     public $startX = null;
     public $endX = null;
     public $thisWeek = "This Week";
@@ -22,33 +21,13 @@ class Calendar extends Component
     }
 
     protected $listeners = [
-        'startSelecting' => 'startSelecting',
-        'updateSelecting' => 'updateSelecting',
         'stopSelecting' => 'stopSelecting',
     ];
 
-    public function startSelecting($startX)
+    public function stopSelecting($selection)
     {
-        Log::info('Started Selecting');
-        $this->isSelecting = "y";
-        $this->startX = $startX;
-        $this->endX = $startX;
-    }
-
-    public function updateSelecting($endX)
-    {
-        if ($this->isSelecting === "y") {
-            $this->endX = $endX;
-        }
-    }
-
-    public function stopSelecting()
-    {
-        $this->isSelecting = "n";
-        $this->selectedTimeRange = [$this->startX, $this->endX];
-
-        // Handle the logic for selecting the time range
-        // You can perform additional actions or emit further Livewire events as needed
+        $this->selectedIds = array_merge($this->selectedIds, $selection);
+        $this->selectedIds = array_unique($this->selectedIds);
     }
 
     private function generateTimeSlots(): Collection
