@@ -61,7 +61,7 @@
 
                     <div class="td2">
                         @foreach($chunk->skip(2) as $slot)
-                        <span id="{{ $slot['id'] }}" wire:key="{{ $slot['id'] }}" class="{{ implode(' ', $slot['classes']) }}">
+                        <span id="{{ $slot['id'] }}" wire:key="{{ $slot['id'] }}" class="{{ implode(' ', $slot['classes']) }} @if(in_array($slot['id'], $selectedIds)) Output highlighted @endif">
                             {{ $slot['title'] }}
                         </span>
                         @endforeach
