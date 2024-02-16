@@ -14,7 +14,7 @@ docker-compose up -d
 ### Step 2
 Open phpMyAdmin using URL http://localhost:8080/
 
-Import all sql scripts to laravel database
+Download zip file from https://drive.google.com/file/d/18d8zyNqmBIfUL0jr2IRoInZbVPqhtTHI/view and import all sql scripts  to laravel database using phpMyAdmin
 
 ### Step 3
 On project root install dependencies and run migrations by
@@ -26,7 +26,7 @@ docker-compose exec web php artisan migrate
 ```
 
 ### Step 4
-Copy folders 
+Download zip file from https://drive.google.com/file/d/18d8zyNqmBIfUL0jr2IRoInZbVPqhtTHI/view and copy folders 
 ```sh
 css
 fonts
